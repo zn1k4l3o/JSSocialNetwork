@@ -1,0 +1,19 @@
+nav {
+  height: 80px;
+  width: 100%;
+  background-color: var(--primary);
+  align-content: center;
+
+  ul {
+    margin: 0 auto;
+    max-width: var(--page-width);
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    li {
+    }
+  }
+}

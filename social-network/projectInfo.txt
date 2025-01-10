@@ -1,0 +1,15 @@
+Entities
+
+User
+Post
+Comment
+Reaction
+Message
+
+Screens
+
+PostPage
+UserPage
+MessageView
+LoginPage
+RegisterPage
