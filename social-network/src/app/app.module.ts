@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -10,6 +10,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { MessageViewComponent } from './message-view/message-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostComponent } from './post/post.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,13 @@ import { PostComponent } from './post/post.component';
     UserPageComponent,
     MessageViewComponent,
     NavbarComponent,
-    PostComponent
+    PostComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration()

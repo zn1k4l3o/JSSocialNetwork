@@ -1,0 +1,31 @@
+.message {
+  width: 100%;
+
+  div {
+    padding: 8px;
+    max-width: 300px;
+    width: fit-content;
+    height: fit-content;
+    border-top: var(--border2);
+    border-bottom: var(--border2);
+    background-color: var(--secondary);
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+}
+
+.rightSide {
+  margin-left: auto;
+  margin-right: 0;
+  border-right: none;
+  border-left: var(--border2);
+  border-radius: 16px 0 0 16px;
+}
+
+.leftSide {
+  margin-left: 0;
+  margin-right: auto;
+  border-left: none;
+  border-right: var(--border2);
+  border-radius: 0 16px 16px 0;
+}

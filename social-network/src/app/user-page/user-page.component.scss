@@ -1,0 +1,25 @@
+.userPage {
+  width: 100%;
+  background-color: var(--secondary);
+  padding-top: 16px;
+
+  section {
+    max-width: var(--page-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    div {
+      width: 600px;
+    }
+
+    aside {
+      display: flex;
+      flex-direction: column;
+      //align-content: flex-start;
+      margin-left: 64px;
+    }
+  }
+}
