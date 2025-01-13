@@ -4,7 +4,7 @@
   height: calc(100vh - 80px);
   padding-top: 10px;
   box-sizing: border-box;
-  
+
   form {
     width: 400px;
     height: fit-content;
@@ -61,6 +61,20 @@
       cursor: pointer;
       background-color: var(--primary);
       border: var(--border2);
+    }
+  }
+
+  .registerLink {
+    width: max-content;
+    margin: 16px auto 0 auto;
+
+    a {
+      color: var(--font-dark);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--primary)
     }
   }
 }
