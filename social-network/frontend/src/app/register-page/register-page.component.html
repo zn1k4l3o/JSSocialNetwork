@@ -1,0 +1,54 @@
+<main class="registerPage">
+  <form [formGroup]="registerData" (ngSubmit)="onSubmit()">
+    <div class="topDiv">
+      <div>
+        <label for="username">Username</label>
+      </div>
+      <input type="text" name="username" formControlName="username" />
+    </div>
+    <div class="midDiv">
+      <div>
+        <label for="name">Name</label>
+      </div>
+      <input type="text" name="name" formControlName="name" />
+    </div>
+    <div class="midDiv">
+      <div>
+        <label for="surname">Surname</label>
+      </div>
+      <input type="text" name="surname" formControlName="surname" />
+    </div>
+    <div class="midDiv">
+      <div>
+        <label for="email">Email</label>
+      </div>
+      <input type="email" name="email" formControlName="email" />
+    </div>
+    <div class="midDiv checkDiv">
+      <div>
+        <label for="hasAdmin">Has admin privileges</label>
+      </div>
+      <input type="checkbox" name="hasAdmin" formControlName="hasAdmin" />
+    </div>
+    <div class="midDiv">
+      <div>
+        <label for="password">Password</label>
+      </div>
+      <input type="password" name="password" formControlName="password" />
+    </div>
+    <div class="bottomDiv">
+      <div>
+        <label for="passwordRepeat">Repeat password</label>
+      </div>
+      <input
+        type="password"
+        name="passwordRepeat"
+        formControlName="passwordRepeat"
+      />
+    </div>
+    <input type="submit" class="submitButton" />
+  </form>
+  <p class="registerLink">
+    Click here to <a [routerLink]="['/login']">login.</a>
+  </p>
+</main>

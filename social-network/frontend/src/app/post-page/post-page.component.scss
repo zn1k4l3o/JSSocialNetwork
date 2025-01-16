@@ -1,0 +1,16 @@
+.postsPage {
+  background-color: var(--secondary);
+  width: 100%;
+  height: 1000px; //replace
+  padding-top: 16px;
+
+  section {
+    max-width: var(--page-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+}
