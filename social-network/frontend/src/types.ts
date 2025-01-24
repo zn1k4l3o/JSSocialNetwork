@@ -1,12 +1,14 @@
-type User = {
+export type User = {
   id: string;
   name: string;
   surname: string;
   username: string;
-  //adress and stuff
+  email: string;
+  password: string;
+  hasAdmin: boolean;
 };
 
-type Message = {
+export type Message = {
   id?: string;
   messagePosition: number;
   content: string;
@@ -15,8 +17,17 @@ type Message = {
   target: string;
 };
 
-type Post = {
-    id: string;
-    content: string;
-    owner: string;
-}
+export type Post = {
+  id: string;
+  content: string;
+  owner: string;
+};
+
+export type JWTToken = {
+  access_token: string;
+};
+
+export type JWTTokenResponse = {
+  user: User;
+  [key: string]: any;
+};

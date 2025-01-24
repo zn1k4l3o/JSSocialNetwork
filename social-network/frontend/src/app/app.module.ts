@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +14,8 @@ import { MessageViewComponent } from './message-view/message-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostComponent } from './post/post.component';
 import { MessageComponent } from './message/message.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NewPageComponent } from './new-page/new-page.component';
 
 @NgModule({
   declarations: [
@@ -22,16 +27,16 @@ import { MessageComponent } from './message/message.component';
     MessageViewComponent,
     NavbarComponent,
     PostComponent,
-    MessageComponent
+    MessageComponent,
+    NewPageComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [
-    provideClientHydration()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
