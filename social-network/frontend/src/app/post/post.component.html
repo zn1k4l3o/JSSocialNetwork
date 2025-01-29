@@ -1,13 +1,12 @@
 <article class="singlePost">
   <div class="content">
     <div>
-      <h4>Username</h4>
-      <h4 class="date">10.01.2025</h4>
+      <h4>{{ username }}</h4>
+      <h4 class="date">{{ postDate }}</h4>
     </div>
-    <h3>Title</h3>
+    <h3>{{ post?.title }}</h3>
     <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur,
-      repellat?
+      {{ post?.content }}
     </p>
   </div>
 

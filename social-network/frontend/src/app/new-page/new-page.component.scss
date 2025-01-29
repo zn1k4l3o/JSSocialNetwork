@@ -1,0 +1,68 @@
+.newPostPage {
+  background-color: var(--secondary);
+  height: 1000px;
+  padding: 36px;
+
+  form {
+    max-width: 600px;
+    width: 100%;
+    height: fit-content;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: var(--post-color);
+    border: var(--border2);
+    border-radius: 16px;
+    padding: 20px;
+
+    div {
+      div {
+        border: var(--border2);
+        background-color: var(--primary);
+        border-radius: 8px 8px 0 0;
+        padding: 2px;
+
+        label {
+          font-size: 16px;
+          width: 100%;
+          color: var(--font-white);
+        }
+      }
+
+      input {
+        font-size: 20px;
+        box-sizing: border-box;
+        border-top: none;
+        border-bottom: none;
+        border-width: 1px;
+        width: 100%;
+      }
+
+      textarea {
+        font-size: 18px;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 200px;
+        height: fit-content;
+        resize: vertical;
+      }
+    }
+
+    .submitButton {
+      width: 80px;
+      height: 30px;
+      color: var(--font-white);
+      background-color: var(--ternary);
+      border: 2px solid var(--ternary);
+      border-radius: 8px;
+      margin: 0 auto;
+      display: block;
+      transition: 0.4s ease-in-out;
+    }
+
+    .submitButton:hover {
+      cursor: pointer;
+      background-color: var(--primary);
+      border: var(--border2);
+    }
+  }
+}

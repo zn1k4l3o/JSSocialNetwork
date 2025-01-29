@@ -1,5 +1,5 @@
 export type User = {
-  id: string;
+  _id: string;
   name: string;
   surname: string;
   username: string;
@@ -18,9 +18,11 @@ export type Message = {
 };
 
 export type Post = {
-  id: string;
+  id?: string;
+  title: string;
   content: string;
-  owner: string;
+  userId: string;
+  timestamp: string;
 };
 
 export type JWTToken = {

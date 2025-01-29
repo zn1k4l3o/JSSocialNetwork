@@ -1,15 +1,13 @@
 <main class="userPage">
   <section>
     <div>
-      <app-post />
-      <app-post />
-      <app-post />
+      <app-post *ngFor="let post of userPosts" [post]="post" />
     </div>
     <aside>
-      <h3>Username</h3>
-      <h4>Name</h4>
-      <h4>Surname</h4>
-      <h4>Gmail</h4>
+      <h3>{{ user?.username }}</h3>
+      <h4>{{ user?.name }}</h4>
+      <h4>{{ user?.surname }}</h4>
+      <h4>{{ user?.email }}</h4>
     </aside>
   </section>
 </main>

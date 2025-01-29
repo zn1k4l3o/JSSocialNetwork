@@ -1,17 +1,16 @@
 <main class="newPostPage">
-  <section>
-    <form [formGroup]="newPost" (ngSubmit)="onSubmitPost()">
+  <form [formGroup]="newPost" (ngSubmit)="onSubmitPost()">
+    <div>
       <div>
-        <div>
-          <label for="description">What's on your mind?</label>
-        </div>
-        <textarea
-          type="text"
-          name="description"
-          formControlName="description"
-        ></textarea>
+        <label for="title">What's on your mind?</label>
       </div>
-      <input type="submit" class="submitButton" />
-    </form>
-  </section>
+      <input type="text" name="title" formControlName="title" />
+      <textarea
+        type="text"
+        name="description"
+        formControlName="description"
+      ></textarea>
+    </div>
+    <input type="submit" class="submitButton" />
+  </form>
 </main>

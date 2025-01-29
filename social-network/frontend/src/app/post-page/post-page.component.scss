@@ -10,7 +10,10 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
+
+    div {
+      width: 100%;
+    }
   }
-
-
 }

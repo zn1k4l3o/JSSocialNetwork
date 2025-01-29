@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   AUTH,
@@ -8,14 +8,16 @@ import {
   PROFILE,
   USERS,
 } from '../connectionData';
-import { JWTToken, JWTTokenResponse, User } from '../types';
-import { Observable } from 'rxjs';
+import { JWTToken, JWTTokenResponse, Post, User } from '../types';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
   constructor(private http: HttpClient) {}
+
+  //private postsSubject = new BehaviorSubject<Post[]>([]);
 
   addUser(user: User) {
     return this.http.post<JWTToken>(`${BACK_URL}${AUTH}`, user);
@@ -37,6 +39,25 @@ export class DatabaseService {
   }
 
   getPosts() {
-    return this.http.get(`${BACK_URL}${POSTS}`);
+    return this.http.get<Post[]>(`${BACK_URL}${POSTS}`);
+  }
+
+  getPostsById(id: string) {
+    return this.http.get<Post[]>(`${BACK_URL}${POSTS}/${id}`);
+  }
+
+  addPost(post: Post) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    console.log('newPost', JSON.stringify(post));
+
+    return this.http.post<Post>(`${BACK_URL}${POSTS}`, post, httpOptions);
+  }
+
+  getUserById(id: string) {
+    return this.http.get<User>(`${BACK_URL}${USERS}/${id}`);
   }
 }

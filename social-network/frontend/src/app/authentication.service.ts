@@ -64,14 +64,17 @@ export class AuthenticationService implements OnInit {
     console.log('access', this.access_token);
     if (this.access_token) {
       return this.data.getUserByToken(this.access_token).pipe(
-        map((response: JWTTokenResponse) => response.user),
+        map((response: JWTTokenResponse) => {
+          console.log(response.user);
+          return response.user;
+        }),
         catchError((error) => {
           console.error('Failed to fetch user', error);
-          return of(null); // Return null if there's an error
+          return of(null);
         })
       );
     } else {
-      return of(null); // Return an Observable of null if no token
+      return of(null);
     }
   }
 }
