@@ -3,12 +3,12 @@
     <li>
       <a [routerLink]="['']"><img src="" alt="logo" /></a>
     </li>
-    <li><a [routerLink]="['']">Posts</a></li>
-    <li><a [routerLink]="['new_post']">New Post</a></li>
+    <li><a *ngIf="isLoggedIn" [routerLink]="['']">Posts</a></li>
+    <li><a *ngIf="isLoggedIn" [routerLink]="['new_post']">New Post</a></li>
     <li>
       <a *ngIf="!isLoggedIn" [routerLink]="['login']">Login</a>
       <a *ngIf="isLoggedIn" [routerLink]="['user']">Hi, {{ username }}</a>
     </li>
-    <li><a>Logout</a></li>
+    <li><a (click)="logout()">Logout</a></li>
   </ul>
 </nav>

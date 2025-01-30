@@ -1,7 +1,11 @@
 <main class="postsPage">
   <section>
     <div>
-      <app-post *ngFor="let post of posts" [post]="post" />
+      <app-post
+        *ngFor="let post of posts"
+        [post]="post"
+        [currentUserId]="currentUser?._id ?? ''"
+      />
     </div>
     <app-message-view />
   </section>

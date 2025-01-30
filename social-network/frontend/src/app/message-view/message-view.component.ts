@@ -70,6 +70,7 @@ export class MessageViewComponent implements OnInit {
     };
     this.dataService.addMessage(message).subscribe(() => {
       this.fetchMessagesForUserId();
+      this.newMessage.setValue('');
     });
   }
 }

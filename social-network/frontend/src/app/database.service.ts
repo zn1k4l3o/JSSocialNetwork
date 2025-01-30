@@ -2,15 +2,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   AUTH,
-  BACK_URL,
+  COMMENTS,
   LOGIN,
   MESSAGES,
   POSTS,
   PROFILE,
   USERS,
 } from '../connectionData';
-import { JWTToken, JWTTokenResponse, Message, Post, User } from '../types';
-import { BehaviorSubject, of } from 'rxjs';
+import { environment } from '../environments/environment';
+import {
+  Comment,
+  JWTToken,
+  JWTTokenResponse,
+  Message,
+  Post,
+  User,
+} from '../types';
 
 @Injectable({
   providedIn: 'root',
@@ -18,33 +25,34 @@ import { BehaviorSubject, of } from 'rxjs';
 export class DatabaseService {
   constructor(private http: HttpClient) {}
 
-  //private postsSubject = new BehaviorSubject<Post[]>([]);
-
   addUser(user: User) {
-    return this.http.post<JWTToken>(`${BACK_URL}${AUTH}`, user);
+    return this.http.post<JWTToken>(`${environment.BACK_URL}${AUTH}`, user);
   }
 
   getUserByToken(access_token: string) {
     const headers = {
       Authorization: `Bearer ${access_token}`,
     };
-    return this.http.get<JWTTokenResponse>(`${BACK_URL}${AUTH}${PROFILE}`, {
-      headers,
-    });
+    return this.http.get<JWTTokenResponse>(
+      `${environment.BACK_URL}${AUTH}${PROFILE}`,
+      {
+        headers,
+      }
+    );
   }
 
   loginUser(username: string, password: string) {
     return this.http.get<JWTToken>(
-      `${BACK_URL}${AUTH}${LOGIN}?username=${username}&password=${password}`
+      `${environment.BACK_URL}${AUTH}${LOGIN}?username=${username}&password=${password}`
     );
   }
 
   getPosts() {
-    return this.http.get<Post[]>(`${BACK_URL}${POSTS}`);
+    return this.http.get<Post[]>(`${environment.BACK_URL}${POSTS}`);
   }
 
   getPostsById(id: string) {
-    return this.http.get<Post[]>(`${BACK_URL}${POSTS}/${id}`);
+    return this.http.get<Post[]>(`${environment.BACK_URL}${POSTS}/${id}`);
   }
 
   addPost(post: Post) {
@@ -55,24 +63,44 @@ export class DatabaseService {
     };
     console.log('newPost', JSON.stringify(post));
 
-    return this.http.post<Post>(`${BACK_URL}${POSTS}`, post, httpOptions);
+    return this.http.post<Post>(
+      `${environment.BACK_URL}${POSTS}`,
+      post,
+      httpOptions
+    );
   }
 
   getUserById(id: string) {
-    return this.http.get<User>(`${BACK_URL}${USERS}/${id}`);
+    return this.http.get<User>(`${environment.BACK_URL}${USERS}/${id}`);
   }
 
   addMessage(message: Message) {
-    return this.http.post<Message>(`${BACK_URL}${MESSAGES}`, message);
+    return this.http.post<Message>(
+      `${environment.BACK_URL}${MESSAGES}`,
+      message
+    );
   }
 
   getMessagesById(userId: string, chosenId: string) {
     return this.http.get<Message[]>(
-      `${BACK_URL}${MESSAGES}/pair?userId=${userId}&chosenId=${chosenId}`
+      `${environment.BACK_URL}${MESSAGES}/pair?userId=${userId}&chosenId=${chosenId}`
     );
   }
 
   getAllUsers() {
-    return this.http.get<User[]>(`${BACK_URL}${USERS}`);
+    return this.http.get<User[]>(`${environment.BACK_URL}${USERS}`);
+  }
+
+  addComment(comment: Comment) {
+    return this.http.post<Comment>(
+      `${environment.BACK_URL}${COMMENTS}`,
+      comment
+    );
+  }
+
+  getAllCommentsByPostId(postId: string) {
+    return this.http.get<Comment[]>(
+      `${environment.BACK_URL}${COMMENTS}/${postId}`
+    );
   }
 }

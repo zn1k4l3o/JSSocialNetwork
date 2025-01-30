@@ -54,7 +54,6 @@ export class AuthenticationService implements OnInit {
       },
       error: (err) => {
         console.error('Registration failed:', err);
-        // Display error to the user
       },
     });
   }

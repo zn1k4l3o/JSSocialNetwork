@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import { User } from '../../types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +11,23 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string | null = null;
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.authService.getUserFromStorage().subscribe((user) => {
       this.isLoggedIn = !!user;
       this.username = user?.username || null;
     });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.username = null;
+    this.isLoggedIn = false;
+    this.router.navigate(['login']);
+    //dodati da se brani da moze doc na stranicu itd
   }
 }

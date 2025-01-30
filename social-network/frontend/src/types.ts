@@ -9,7 +9,7 @@ export type User = {
 };
 
 export type Message = {
-  id?: string;
+  _id?: string;
   message: string;
   timestamp: string;
   ownerId: string;
@@ -17,11 +17,19 @@ export type Message = {
 };
 
 export type Post = {
-  id?: string;
+  _id?: string;
   title: string;
   content: string;
   userId: string;
   timestamp: string;
+};
+
+export type Comment = {
+  _id?: string;
+  ownerId: string;
+  content: string;
+  timestamp: string;
+  targetPostId: string;
 };
 
 export type JWTToken = {

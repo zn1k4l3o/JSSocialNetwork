@@ -11,12 +11,15 @@
   </div>
 
   <div class="reaction">
-    <div>
-      <a href="">
-        <img src="" alt="lajk" />
-      </a>
-      <p>666</p>
+    <div *ngIf="enabledComments" class="comments">
+      <article *ngFor="let comment of comments">
+        <p>{{ comment.content }}</p>
+      </article>
     </div>
-    <a href="">Podijeli</a>
+    <div class="commentManage">
+      <a (click)="setEnabledComments()"> Proširi </a>
+      <input type="text" name="comment" [formControl]="newComment" />
+      <a (click)="sendComment()">Komentiraj</a>
+    </div>
   </div>
 </article>
