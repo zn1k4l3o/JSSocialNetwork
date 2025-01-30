@@ -9,8 +9,15 @@ export class MessagesService {
     @InjectModel(Message.name) private readonly messageModel: Model<Message>,
   ) {}
 
-  findMessages(): Promise<Message[]> {
-    return this.messageModel.find().exec();
+  findMessagesById(userId, chosenId): Promise<Message[]> {
+    return this.messageModel
+      .find({
+        $or: [
+          { ownerId: userId, targetId: chosenId },
+          { ownerId: chosenId, targetId: userId },
+        ],
+      })
+      .exec();
   }
 
   addMessage(message) {

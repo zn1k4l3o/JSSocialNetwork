@@ -4,11 +4,12 @@ import {
   AUTH,
   BACK_URL,
   LOGIN,
+  MESSAGES,
   POSTS,
   PROFILE,
   USERS,
 } from '../connectionData';
-import { JWTToken, JWTTokenResponse, Post, User } from '../types';
+import { JWTToken, JWTTokenResponse, Message, Post, User } from '../types';
 import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable({
@@ -59,5 +60,19 @@ export class DatabaseService {
 
   getUserById(id: string) {
     return this.http.get<User>(`${BACK_URL}${USERS}/${id}`);
+  }
+
+  addMessage(message: Message) {
+    return this.http.post<Message>(`${BACK_URL}${MESSAGES}`, message);
+  }
+
+  getMessagesById(userId: string, chosenId: string) {
+    return this.http.get<Message[]>(
+      `${BACK_URL}${MESSAGES}/pair?userId=${userId}&chosenId=${chosenId}`
+    );
+  }
+
+  getAllUsers() {
+    return this.http.get<User[]>(`${BACK_URL}${USERS}`);
   }
 }

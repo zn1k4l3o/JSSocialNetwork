@@ -1,13 +1,16 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { MessagesService } from './messages.service';
 
 @Controller('messages')
 export class MessagesController {
   constructor(private messagesService: MessagesService) {}
 
-  @Get()
-  async findMessagesById() {
-    return this.messagesService.findMessages();
+  @Get('/pair')
+  async findMessagesById(
+    @Query('userId') userId: string,
+    @Query('chosenId') chosenId: string,
+  ) {
+    return this.messagesService.findMessagesById(userId, chosenId);
   }
 
   @Post()

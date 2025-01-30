@@ -7,13 +7,10 @@ export type MessageDocument = HydratedDocument<Message>;
 export class Message {
   @Prop()
   message: string;
-
   @Prop()
   timestamp: string;
-
   @Prop()
-  fromId: string;
-
+  ownerId: string;
   @Prop()
   targetId: string;
 

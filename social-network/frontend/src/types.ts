@@ -10,11 +10,10 @@ export type User = {
 
 export type Message = {
   id?: string;
-  messagePosition: number;
-  content: string;
-  date: string;
-  owner: string;
-  target: string;
+  message: string;
+  timestamp: string;
+  ownerId: string;
+  targetId: string;
 };
 
 export type Post = {
