@@ -1,8 +1,9 @@
 .singlePost {
+  //zamijeniti na grid kad stginem
   margin: 0 auto;
   width: 100%;
   max-width: 640px;
-  min-height: 200px;
+  min-height: 100px;
   height: fit-content;
   max-height: 400px;
   background-color: var(--post-color);
@@ -29,18 +30,38 @@
       }
     }
 
-    h3 {
+    .title {
       background-color: var(--primary);
       border-bottom: 1px solid var(--primary);
       color: white;
       padding: 0 8px 4px 8px;
       min-height: 23px; //upitno
+      font-size: 20px;
+      font-weight: 600;
     }
 
     p {
       padding: 0 8px;
       min-height: 100px;
       height: fit-content;
+    }
+
+    input {
+      background-color: var(--primary);
+      //border-bottom: 1px solid var(--primary);
+      color: white;
+      padding: 0 8px 4px 8px;
+      min-height: 23px;
+      width: 100%;
+      font-size: 20px;
+      border: none;
+    }
+
+    textarea {
+      min-height: 100px;
+      height: fit-content;
+      width: 100%;
+      resize: none;
     }
   }
 

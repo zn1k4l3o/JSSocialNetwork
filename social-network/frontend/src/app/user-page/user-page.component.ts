@@ -11,6 +11,7 @@ import { DatabaseService } from '../database.service';
 export class UserPageComponent implements OnInit {
   user: User | null = null;
   userPosts: Post[] = [];
+
   constructor(
     private authService: AuthenticationService,
     private dataService: DatabaseService

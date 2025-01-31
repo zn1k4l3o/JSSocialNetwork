@@ -103,4 +103,11 @@ export class DatabaseService {
       `${environment.BACK_URL}${COMMENTS}/${postId}`
     );
   }
+
+  patchPost(_id: string, changes: { title: string; content: string }) {
+    return this.http.patch<Post>(
+      `${environment.BACK_URL}${POSTS}/${_id}`,
+      changes
+    );
+  }
 }

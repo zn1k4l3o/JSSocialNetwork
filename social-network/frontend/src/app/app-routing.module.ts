@@ -5,6 +5,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { NewPageComponent } from './new-page/new-page.component';
+import { SinglePostPageComponent } from './single-post-page/single-post-page.component';
 
 const routes: Routes = [
   { path: '', component: PostPageComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'user', component: UserPageComponent },
   { path: 'new_post', component: NewPageComponent },
+  { path: 'post/:id', component: SinglePostPageComponent },
 ];
 
 @NgModule({
