@@ -104,10 +104,29 @@ export class DatabaseService {
     );
   }
 
-  patchPost(_id: string, changes: { title: string; content: string }) {
+  patchPost(
+    _id: string,
+    changes: { title: string; content: string; timestamp: string }
+  ) {
     return this.http.patch<Post>(
       `${environment.BACK_URL}${POSTS}/${_id}`,
       changes
+    );
+  }
+
+  getPostById(postId: string) {
+    return this.http.get<Post>(
+      `${environment.BACK_URL}${POSTS}/post/${postId}`
+    );
+  }
+
+  deletePost(postId: string) {
+    return this.http.delete(`${environment.BACK_URL}${POSTS}/${postId}`);
+  }
+
+  deleteAllComentsOnPost(targetPostId: string) {
+    return this.http.delete(
+      `${environment.BACK_URL}${COMMENTS}/${targetPostId}`
     );
   }
 }

@@ -26,6 +26,7 @@ export type Post = {
 
 export type Comment = {
   _id?: string;
+  username?: string;
   ownerId: string;
   content: string;
   timestamp: string;

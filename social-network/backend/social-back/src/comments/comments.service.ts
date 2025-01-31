@@ -20,4 +20,8 @@ export class CommentsService {
   addComment(newComment) {
     return this.commentModel.create(newComment);
   }
+
+  deleteCommentsByPostId(targetPostId: string) {
+    return this.commentModel.deleteMany({ targetPostId });
+  }
 }

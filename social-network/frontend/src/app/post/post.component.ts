@@ -3,6 +3,7 @@ import { Comment, Post } from '../../types';
 import { DatabaseService } from '../database.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -88,6 +89,7 @@ export class PostComponent implements OnInit {
           const changes = {
             title: this.newPostTitle.value,
             content: this.newPostContent.value,
+            timestamp: new Date().toISOString(),
           };
           this.dataService
             .patchPost(this.post?._id ?? '', changes)
@@ -102,6 +104,6 @@ export class PostComponent implements OnInit {
   }
 
   openPostPage() {
-    this.router.navigate(["post", this.post?._id ]);
+    this.router.navigate(['post', this.post?._id]);
   }
 }

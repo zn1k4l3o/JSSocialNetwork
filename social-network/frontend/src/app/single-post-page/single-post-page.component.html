@@ -1,1 +1,21 @@
-<p>id: {{ heroId }}</p>
+<main class="singlePostPage">
+  <section>
+    <section>
+      <h1>{{ post.title }}</h1>
+      <h2>By {{ user?.username }} on {{ postDate }}</h2>
+      <p class="content">
+        {{ post.content }}
+      </p>
+      <div class="comments">
+        <article *ngFor="let comment of comments">
+          <h4>{{ comment.username }}</h4>
+          <p>{{ comment.content }}</p>
+        </article>
+      </div>
+    </section>
+    <aside *ngIf="post.userId === user?._id">
+      <button>Edit</button>
+      <button (click)="deletePost()">Delete</button>
+    </aside>
+  </section>
+</main>

@@ -29,6 +29,11 @@ export class PostsController {
     return this.postsService.findPostsByUserId(userId);
   }
 
+  @Get('post/:postId')
+  findPostById(@Param('postId') postId) {
+    return this.postsService.findPostById(postId);
+  }
+
   @Post()
   async addPost(@Body() newPost: CreatePostDTO): Promise<PostType> {
     this.logger.log(newPost);

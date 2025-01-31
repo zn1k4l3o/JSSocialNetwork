@@ -1,4 +1,4 @@
-import { Injectable, Logger, Module } from '@nestjs/common';
+import { Injectable, Module } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Post } from 'src/schemas/post.schema';
@@ -22,8 +22,11 @@ export class PostsService {
     return this.postModel.find({ userId }).exec();
   }
 
+  findPostById(postId: string) {
+    return this.postModel.findById(postId);
+  }
+
   addPost(post: CreatePostDTO) {
-    Logger.log('posto2', post);
     return this.postModel.create(post);
   }
 
@@ -32,6 +35,14 @@ export class PostsService {
   }
 
   patchPost(postId, postChanges) {
-    return this.postModel.findByIdAndUpdate({ _id: postId }, postChanges);
+    return this.postModel.findByIdAndUpdate(
+      { _id: postId },
+      {
+        title: postChanges.title,
+        content: postChanges.content,
+        timestamp: postChanges.timestamp,
+      },
+      { new: true },
+    );
   }
 }

@@ -36,7 +36,6 @@ export class PostPageComponent implements OnInit {
   loadUser() {
     this.auth.getUserFromStorage().subscribe((user) => {
       this.currentUser = user;
-      console.log('useeeerPost', this.currentUser);
     });
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 
 @Controller('comments')
@@ -12,7 +12,11 @@ export class CommentsController {
 
   @Post()
   addComment(@Body() newComment) {
-    Logger.log(JSON.stringify(newComment));
     return this.commentsService.addComment(newComment);
+  }
+
+  @Delete(':postId')
+  deleteAllComments(@Param('postId') targetPostId) {
+    this.commentsService.deleteCommentsByPostId(targetPostId);
   }
 }
