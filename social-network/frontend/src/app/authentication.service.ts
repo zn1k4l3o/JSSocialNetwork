@@ -9,6 +9,7 @@ import { catchError, map, Observable, of } from 'rxjs';
 })
 export class AuthenticationService implements OnInit {
   private access_token: string | null = null;
+  errorMessage: string | null = null;
 
   constructor(private data: DatabaseService, private router: Router) {
     afterNextRender(() => {
@@ -29,10 +30,11 @@ export class AuthenticationService implements OnInit {
         localStorage.setItem('access_token', userToken.access_token);
         console.log('Login successful:', userToken);
         this.router.navigate(['/']);
+        this.errorMessage = null;
       },
       error: (err) => {
         console.error('Login failed:', err);
-        // Display error to the user
+        this.errorMessage = "Username and password don't match";
       },
     });
   }
@@ -51,9 +53,11 @@ export class AuthenticationService implements OnInit {
         localStorage.setItem('access_token', userToken.access_token); // Save token if needed
         console.log('Registration successful:', userToken);
         this.router.navigate(['/']);
+        this.errorMessage = null;
       },
       error: (err) => {
         console.error('Registration failed:', err);
+        this.errorMessage = 'Username already exists!';
       },
     });
   }

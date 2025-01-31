@@ -17,4 +17,7 @@
   <p class="registerLink">
     Click here to <a [routerLink]="['/register']">register.</a>
   </p>
+  <p *ngIf="errorText" class="errorText">
+    {{ errorText }}
+  </p>
 </main>

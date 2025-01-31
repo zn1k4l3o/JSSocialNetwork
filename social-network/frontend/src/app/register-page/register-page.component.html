@@ -48,7 +48,6 @@
     </div>
     <input type="submit" class="submitButton" />
   </form>
-  <p class="registerLink">
-    Click here to <a [routerLink]="['/login']">login.</a>
-  </p>
+  <p class="loginLink">Click here to <a [routerLink]="['/login']">login.</a></p>
+  <p *ngIf="errorText" class="errorText">{{ errorText }}</p>
 </main>

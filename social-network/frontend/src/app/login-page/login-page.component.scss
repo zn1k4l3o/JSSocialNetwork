@@ -74,7 +74,17 @@
     }
 
     a:hover {
-      color: var(--primary)
+      color: var(--primary);
     }
+  }
+
+  .errorText {
+    margin: 0 auto;
+    max-width: var(--page-width);
+    width: 100%;
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 24px;
   }
 }

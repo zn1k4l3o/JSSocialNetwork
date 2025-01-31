@@ -17,6 +17,7 @@ import { MessageComponent } from './message/message.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewPageComponent } from './new-page/new-page.component';
 import { SinglePostPageComponent } from './single-post-page/single-post-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SinglePostPageComponent } from './single-post-page/single-post-page.com
     MessageComponent,
     NewPageComponent,
     SinglePostPageComponent,
+    AdminPageComponent,
   ],
   imports: [
     HttpClientModule,

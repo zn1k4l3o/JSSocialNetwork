@@ -9,6 +9,7 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class LoginPageComponent implements OnInit {
   public loginData!: FormGroup;
+  errorText: string | null = null;
 
   constructor(private auth: AuthenticationService) {}
 
@@ -20,9 +21,12 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth.login(
-      this.loginData.value.username,
-      this.loginData.value.password
-    );
+    if (this.loginData.valid) {
+      this.auth
+        .login(this.loginData.value.username, this.loginData.value.password)
+        .finally(() => {
+          this.errorText = this.auth.errorMessage;
+        });
+    } else this.errorText = 'Please enter username and password.';
   }
 }

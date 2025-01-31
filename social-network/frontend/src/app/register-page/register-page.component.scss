@@ -73,7 +73,7 @@
     }
   }
 
-  .registerLink {
+  .loginLink {
     width: max-content;
     margin: 16px auto 0 auto;
 
@@ -85,5 +85,15 @@
     a:hover {
       color: var(--primary);
     }
+  }
+
+  .errorText {
+    margin: 0 auto;
+    max-width: var(--page-width);
+    width: 100%;
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 24px;
   }
 }
