@@ -13,7 +13,7 @@ export class AuthenticationService implements OnInit {
 
   constructor(private data: DatabaseService, private router: Router) {
     afterNextRender(() => {
-      const storedData = localStorage.getItem('access_token');
+      const storedData = sessionStorage.getItem('access_token');
       if (storedData) {
         try {
           this.access_token = storedData;
@@ -23,59 +23,75 @@ export class AuthenticationService implements OnInit {
   }
   ngOnInit(): void {}
 
-  async login(username: string, password: string) {
+  async login(username: string, password: string, func: () => void) {
     this.data.loginUser(username, password).subscribe({
       next: (userToken: JWTToken) => {
         this.access_token = userToken.access_token;
-        localStorage.setItem('access_token', userToken.access_token);
+        sessionStorage.setItem('access_token', userToken.access_token);
         console.log('Login successful:', userToken);
-        this.router.navigate(['/']);
         this.errorMessage = null;
+        //func();
+        this.router.navigate(['/']).then(() => {
+          func();
+          window.location.reload();
+        });
       },
       error: (err) => {
         console.error('Login failed:', err);
         this.errorMessage = "Username and password don't match";
+        func();
       },
     });
   }
 
-  async register(credentials: {
-    username: string;
-    password: string;
-    email: string;
-    name: string;
-    surname: string;
-    hasAdmin: boolean;
-  }) {
+  async register(
+    credentials: {
+      username: string;
+      password: string;
+      email: string;
+      name: string;
+      surname: string;
+      hasAdmin: boolean;
+    },
+    func: () => void
+  ) {
     this.data.addUser(credentials as User).subscribe({
       next: (userToken: JWTToken) => {
         this.access_token = userToken.access_token;
-        localStorage.setItem('access_token', userToken.access_token); // Save token if needed
+        sessionStorage.setItem('access_token', userToken.access_token); // Save token if needed
         console.log('Registration successful:', userToken);
-        this.router.navigate(['/']);
         this.errorMessage = null;
+        this.router.navigate(['/']).then(() => {
+          func();
+          window.location.reload();
+        });
       },
       error: (err) => {
         console.error('Registration failed:', err);
         this.errorMessage = 'Username already exists!';
+        func();
       },
     });
   }
 
   getUserFromStorage() {
-    this.access_token = localStorage.getItem('access_token');
-    console.log('access', this.access_token);
-    if (this.access_token) {
-      return this.data.getUserByToken(this.access_token).pipe(
-        map((response: JWTTokenResponse) => {
-          console.log(response.user);
-          return response.user;
-        }),
-        catchError((error) => {
-          console.error('Failed to fetch user', error);
-          return of(null);
-        })
-      );
+    if (typeof Storage !== 'undefined') {
+      this.access_token = sessionStorage.getItem('access_token');
+      console.log('access', this.access_token);
+      if (this.access_token) {
+        return this.data.getUserByToken(this.access_token).pipe(
+          map((response: JWTTokenResponse) => {
+            console.log(response.user);
+            return response.user;
+          }),
+          catchError((error) => {
+            console.error('Failed to fetch user', error);
+            return of(null);
+          })
+        );
+      } else {
+        return of(null);
+      }
     } else {
       return of(null);
     }

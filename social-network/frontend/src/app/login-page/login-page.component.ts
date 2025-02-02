@@ -22,11 +22,13 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit() {
     if (this.loginData.valid) {
-      this.auth
-        .login(this.loginData.value.username, this.loginData.value.password)
-        .finally(() => {
+      this.auth.login(
+        this.loginData.value.username,
+        this.loginData.value.password,
+        () => {
           this.errorText = this.auth.errorMessage;
-        });
+        }
+      );
     } else this.errorText = 'Please enter username and password.';
   }
 }

@@ -129,4 +129,8 @@ export class DatabaseService {
       `${environment.BACK_URL}${COMMENTS}/${targetPostId}`
     );
   }
+
+  deleteUserById(userId: string) {
+    return this.http.delete(`${environment.BACK_URL}${COMMENTS}/${userId}`);
+  }
 }

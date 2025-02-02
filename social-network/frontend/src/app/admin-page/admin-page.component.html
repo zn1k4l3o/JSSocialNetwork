@@ -1,1 +1,35 @@
-<p>admin-page works!</p>
+<main class="adminPage">
+  <section>
+    <table>
+      <h2>Users</h2>
+      <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let user of userList; index as i">
+        <td>{{ user.username }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.surname }}</td>
+        <td>{{ user.email }}</td>
+        <td><button (click)="deleteUser(i)">Delete</button></td>
+      </tr>
+    </table>
+    <h2>Posts</h2>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let post of postList; index as i">
+        <td>{{ post.title }}</td>
+        <td>{{ post.content }}</td>
+        <td>{{ post.timestamp }}</td>
+        <td><button (click)="deletePost(i)">Delete</button></td>
+      </tr>
+    </table>
+  </section>
+</main>

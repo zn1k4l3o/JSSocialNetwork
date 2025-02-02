@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string | null = null;
+  isAdmin: boolean = false;
 
   constructor(
     private authService: AuthenticationService,
@@ -20,14 +21,12 @@ export class NavbarComponent implements OnInit {
     this.authService.getUserFromStorage().subscribe((user) => {
       this.isLoggedIn = !!user;
       this.username = user?.username || null;
+      this.isAdmin = user?.hasAdmin ?? false; 
     });
-    if (!this.isLoggedIn) {
-      this.router.navigate(['login']);
-    }
   }
 
   logout() {
-    localStorage.clear();
+    sessionStorage.clear();
     this.username = null;
     this.isLoggedIn = false;
     this.router.navigate(['login']);

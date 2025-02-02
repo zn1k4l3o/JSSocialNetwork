@@ -3,7 +3,12 @@
     <li>
       <a [routerLink]="['']"><img src="" alt="logo" /></a>
     </li>
-    <li><a *ngIf="isLoggedIn" [routerLink]="['']">Posts</a></li>
+    <li>
+      <a *ngIf="isLoggedIn && !isAdmin" [routerLink]="['']">Posts</a>
+      <a *ngIf="isLoggedIn && isAdmin" [routerLink]="['admin']"
+        >Manage Activity</a
+      >
+    </li>
     <li><a *ngIf="isLoggedIn" [routerLink]="['new_post']">New Post</a></li>
     <li>
       <a *ngIf="!isLoggedIn" [routerLink]="['login']">Login</a>

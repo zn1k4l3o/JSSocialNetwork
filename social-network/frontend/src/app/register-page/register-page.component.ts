@@ -30,18 +30,19 @@ export class RegisterPageComponent implements OnInit {
         this.registerData.value.password ==
         this.registerData.value.passwordRepeat
       ) {
-        await this.auth
-          .register({
+        await this.auth.register(
+          {
             username: this.registerData.value.username,
             name: this.registerData.value.name,
             surname: this.registerData.value.surname,
             email: this.registerData.value.email,
             password: this.registerData.value.password,
             hasAdmin: this.registerData.value.hasAdmin,
-          })
-          .finally(() => {
+          },
+          () => {
             this.errorText = this.auth.errorMessage;
-          });
+          }
+        );
       } else this.errorText = 'Passwords do not match!';
     } else this.errorText = 'Make sure to write email properly.';
   }
