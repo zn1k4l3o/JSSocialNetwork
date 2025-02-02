@@ -1,0 +1,54 @@
+.adminPage {
+  background-color: var(--secondary);
+  width: 100%;
+  height: fit-content;
+
+  section {
+    width: var(--page-width);
+    background-color: var(--post-color);
+    margin: 0 auto;
+    padding: 0 20px;
+
+    h2 {
+      padding-top: 24px;
+    }
+
+    table {
+      margin-top: 16px;
+      width: 100%;
+      border: var(--border2);
+      border-collapse: collapse;
+      tr {
+        border: 1px solid var(--primary);
+        height: 30px;
+
+        td {
+          text-align: center;
+
+          button {
+            width: 72px;
+            height: 22px;
+          }
+        }
+
+        .small {
+          width: 80px;
+        }
+
+        .mid {
+          width: auto;
+          max-width: 25%;
+        }
+
+        .remaining {
+          width: auto;
+        }
+      }
+
+      th {
+        background-color: var(--primary);
+        color: var(--font-white);
+      }
+    }
+  }
+}

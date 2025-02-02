@@ -29,8 +29,8 @@ export class AuthenticationService implements OnInit {
         this.access_token = userToken.access_token;
         sessionStorage.setItem('access_token', userToken.access_token);
         console.log('Login successful:', userToken);
+        this.fetchUser();
         this.errorMessage = null;
-        //func();
         this.router.navigate(['/']).then(() => {
           func();
           window.location.reload();
@@ -58,7 +58,8 @@ export class AuthenticationService implements OnInit {
     this.data.addUser(credentials as User).subscribe({
       next: (userToken: JWTToken) => {
         this.access_token = userToken.access_token;
-        sessionStorage.setItem('access_token', userToken.access_token); // Save token if needed
+        sessionStorage.setItem('access_token', userToken.access_token);
+        sessionStorage.setItem('hasAdmin', credentials.hasAdmin ? '1' : '0');
         console.log('Registration successful:', userToken);
         this.errorMessage = null;
         this.router.navigate(['/']).then(() => {
@@ -71,6 +72,12 @@ export class AuthenticationService implements OnInit {
         this.errorMessage = 'Username already exists!';
         func();
       },
+    });
+  }
+
+  fetchUser() {
+    this.getUserFromStorage().subscribe((user) => {
+      sessionStorage.setItem('hasAdmin', user?.hasAdmin ? '1' : '0');
     });
   }
 

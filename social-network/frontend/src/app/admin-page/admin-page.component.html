@@ -1,12 +1,13 @@
 <main class="adminPage">
   <section>
+    <h2>Users</h2>
     <table>
-      <h2>Users</h2>
       <tr>
-        <th>Username</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th></th>
+        <th class="mid">Username</th>
+        <th class="mid">Name</th>
+        <th class="mid">Surname</th>
+        <th class="mid">Email</th>
+        <th class="small"></th>
       </tr>
       <tr *ngFor="let user of userList; index as i">
         <td>{{ user.username }}</td>
@@ -19,10 +20,10 @@
     <h2>Posts</h2>
     <table>
       <tr>
-        <th>Title</th>
-        <th>Content</th>
-        <th>Date</th>
-        <th></th>
+        <th class="mid">Title</th>
+        <th class="remaining">Content</th>
+        <th class="mid">Date</th>
+        <th class="small"></th>
       </tr>
       <tr *ngFor="let post of postList; index as i">
         <td>{{ post.title }}</td>

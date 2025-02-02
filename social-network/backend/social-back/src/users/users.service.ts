@@ -34,4 +34,8 @@ export class UsersService {
   addUser(user) {
     return this.userModel.create(user);
   }
+
+  deleteUser(userId) {
+    return this.userModel.findByIdAndDelete(userId);
+  }
 }

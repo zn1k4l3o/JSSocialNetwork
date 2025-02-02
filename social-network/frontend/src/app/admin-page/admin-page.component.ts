@@ -30,7 +30,18 @@ export class AdminPageComponent implements OnInit {
     });
   }
 
-  deleteUser(index: number) {}
+  deleteUser(index: number) {
+    this.data.deleteUserById(this.userList[index]._id).subscribe(() => {
+      this.loadUsers();
+    });
+  }
 
-  deletePost(index: number) {}
+  deletePost(index: number) {
+    this.data
+      .deletePost(this.postList[index]._id ?? '')
+      .subscribe(() => this.loadPosts());
+    this.data
+      .deleteAllComentsOnPost(this.postList[index]._id ?? '')
+      .subscribe();
+  }
 }
