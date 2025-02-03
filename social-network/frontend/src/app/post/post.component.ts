@@ -4,6 +4,7 @@ import { DatabaseService } from '../database.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { timestamp } from 'rxjs';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-post',
@@ -22,7 +23,11 @@ export class PostComponent implements OnInit {
   newPostTitle!: FormControl;
   newPostContent!: FormControl;
 
-  constructor(private dataService: DatabaseService, private router: Router) {}
+  constructor(
+    private dataService: DatabaseService,
+    private router: Router,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
     this.newComment = new FormControl('', Validators.required);
@@ -40,9 +45,14 @@ export class PostComponent implements OnInit {
   }
 
   fetchUsername() {
-    this.dataService.getUserById(this.post?.userId ?? '').subscribe((user) => {
-      this.username = user?.username ?? '';
-    });
+    this.dataService
+      .getUserById(
+        this.post?.userId ?? '',
+        this.authService.getTokenFromStorage() ?? ''
+      )
+      .subscribe((user) => {
+        this.username = user?.username ?? '';
+      });
   }
 
   setEnabledComments() {
@@ -60,17 +70,22 @@ export class PostComponent implements OnInit {
         timestamp: new Date().toISOString(),
         ownerId: this.currentUserId,
       };
-      this.dataService.addComment(comment).subscribe(() => {
-        this.enabledComments = true;
-        this.fetchComments();
-        this.newComment.setValue('');
-      });
+      this.dataService
+        .addComment(comment, this.authService.getTokenFromStorage() ?? '')
+        .subscribe(() => {
+          this.enabledComments = true;
+          this.fetchComments();
+          this.newComment.setValue('');
+        });
     }
   }
 
   fetchComments() {
     this.dataService
-      .getAllCommentsByPostId(this.post?._id ?? '')
+      .getAllCommentsByPostId(
+        this.post?._id ?? '',
+        this.authService.getTokenFromStorage() ?? ''
+      )
       .subscribe((comments) => {
         this.comments = comments;
         this.comments.sort((a, b) => {
@@ -92,7 +107,11 @@ export class PostComponent implements OnInit {
             timestamp: new Date().toISOString(),
           };
           this.dataService
-            .patchPost(this.post?._id ?? '', changes)
+            .patchPost(
+              this.post?._id ?? '',
+              changes,
+              this.authService.getTokenFromStorage() ?? ''
+            )
             .subscribe((post) => {
               this.post = post;
             });

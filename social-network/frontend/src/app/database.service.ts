@@ -47,43 +47,66 @@ export class DatabaseService {
     );
   }
 
-  getPosts() {
-    return this.http.get<Post[]>(`${environment.BACK_URL}${POSTS}`);
+  getPosts(access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    return this.http.get<Post[]>(`${environment.BACK_URL}${POSTS}`, {
+      headers,
+    });
   }
 
-  getPostsById(id: string) {
-    return this.http.get<Post[]>(`${environment.BACK_URL}${POSTS}/${id}`);
+  getPostsById(id: string, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    return this.http.get<Post[]>(`${environment.BACK_URL}${POSTS}/${id}`, {
+      headers,
+    });
   }
 
-  addPost(post: Post) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
+  addPost(post: Post, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
     };
     console.log('newPost', JSON.stringify(post));
 
-    return this.http.post<Post>(
-      `${environment.BACK_URL}${POSTS}`,
-      post,
-      httpOptions
-    );
+    return this.http.post<Post>(`${environment.BACK_URL}${POSTS}`, post, {
+      headers,
+    });
   }
 
-  getUserById(id: string) {
-    return this.http.get<User>(`${environment.BACK_URL}${USERS}/${id}`);
+  getUserById(id: string, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    return this.http.get<User>(`${environment.BACK_URL}${USERS}/${id}`, {
+      headers,
+    });
   }
 
-  addMessage(message: Message) {
+  addMessage(message: Message, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
     return this.http.post<Message>(
       `${environment.BACK_URL}${MESSAGES}`,
-      message
+      message,
+      {
+        headers,
+      }
     );
   }
 
-  getMessagesById(userId: string, chosenId: string) {
+  getMessagesById(userId: string, chosenId: string, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
     return this.http.get<Message[]>(
-      `${environment.BACK_URL}${MESSAGES}/pair?userId=${userId}&chosenId=${chosenId}`
+      `${environment.BACK_URL}${MESSAGES}/pair?userId=${userId}&chosenId=${chosenId}`,
+      {
+        headers,
+      }
     );
   }
 
@@ -91,46 +114,87 @@ export class DatabaseService {
     return this.http.get<User[]>(`${environment.BACK_URL}${USERS}`);
   }
 
-  addComment(comment: Comment) {
+  addComment(comment: Comment, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
     return this.http.post<Comment>(
       `${environment.BACK_URL}${COMMENTS}`,
-      comment
+      comment,
+      {
+        headers,
+      }
     );
   }
 
-  getAllCommentsByPostId(postId: string) {
+  getAllCommentsByPostId(postId: string, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
     return this.http.get<Comment[]>(
-      `${environment.BACK_URL}${COMMENTS}/${postId}`
+      `${environment.BACK_URL}${COMMENTS}/${postId}`,
+      {
+        headers,
+      }
     );
   }
 
   patchPost(
     _id: string,
-    changes: { title: string; content: string; timestamp: string }
+    changes: { title: string; content: string; timestamp: string },
+    access_token: string
   ) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
     return this.http.patch<Post>(
       `${environment.BACK_URL}${POSTS}/${_id}`,
-      changes
+      changes,
+      {
+        headers,
+      }
     );
   }
 
-  getPostById(postId: string) {
+  getPostById(postId: string, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
     return this.http.get<Post>(
-      `${environment.BACK_URL}${POSTS}/post/${postId}`
+      `${environment.BACK_URL}${POSTS}/post/${postId}`,
+      {
+        headers,
+      }
     );
   }
 
-  deletePost(postId: string) {
-    return this.http.delete(`${environment.BACK_URL}${POSTS}/${postId}`);
+  deletePost(postId: string, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    return this.http.delete(`${environment.BACK_URL}${POSTS}/${postId}`, {
+      headers,
+    });
   }
 
-  deleteAllComentsOnPost(targetPostId: string) {
+  deleteAllComentsOnPost(targetPostId: string, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
     return this.http.delete(
-      `${environment.BACK_URL}${COMMENTS}/${targetPostId}`
+      `${environment.BACK_URL}${COMMENTS}/${targetPostId}`,
+      {
+        headers,
+      }
     );
   }
 
-  deleteUserById(userId: string) {
-    return this.http.delete(`${environment.BACK_URL}${USERS}/${userId}`);
+  deleteUserById(userId: string, access_token: string) {
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    return this.http.delete(`${environment.BACK_URL}${USERS}/${userId}`, {
+      headers,
+    });
   }
 }

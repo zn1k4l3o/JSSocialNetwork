@@ -45,7 +45,11 @@ export class MessageViewComponent implements OnInit {
 
   fetchMessagesForUserId() {
     this.dataService
-      .getMessagesById(this.currentUser?._id ?? '', this.chosenUser?._id ?? '')
+      .getMessagesById(
+        this.currentUser?._id ?? '',
+        this.chosenUser?._id ?? '',
+        this.authService.getTokenFromStorage() ?? ''
+      )
       .subscribe((messages) => {
         this.messages = messages;
       });
@@ -68,9 +72,11 @@ export class MessageViewComponent implements OnInit {
       ownerId: this.currentUser?._id ?? '',
       targetId: this.chosenUser?._id ?? '',
     };
-    this.dataService.addMessage(message).subscribe(() => {
-      this.fetchMessagesForUserId();
-      this.newMessage.setValue('');
-    });
+    this.dataService
+      .addMessage(message, this.authService.getTokenFromStorage() ?? '')
+      .subscribe(() => {
+        this.fetchMessagesForUserId();
+        this.newMessage.setValue('');
+      });
   }
 }

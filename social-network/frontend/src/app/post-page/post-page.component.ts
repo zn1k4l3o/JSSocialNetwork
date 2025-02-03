@@ -23,14 +23,16 @@ export class PostPageComponent implements OnInit {
   }
 
   fetchPosts() {
-    this.data.getPosts().subscribe((posts) => {
-      this.posts = posts as Post[];
-      this.posts.sort((a, b) => {
-        const da = new Date(a.timestamp).getTime();
-        const db = new Date(b.timestamp).getTime();
-        return db - da;
+    this.data
+      .getPosts(this.auth.getTokenFromStorage() ?? '')
+      .subscribe((posts) => {
+        this.posts = posts as Post[];
+        this.posts.sort((a, b) => {
+          const da = new Date(a.timestamp).getTime();
+          const db = new Date(b.timestamp).getTime();
+          return db - da;
+        });
       });
-    });
   }
 
   loadUser() {

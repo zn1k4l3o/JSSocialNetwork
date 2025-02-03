@@ -29,13 +29,18 @@ export class UserPageComponent implements OnInit {
   }
 
   fetchPosts() {
-    this.dataService.getPostsById(this.user?._id ?? '').subscribe((posts) => {
-      this.userPosts = posts;
-      this.userPosts.sort((a, b) => {
-        const da = new Date(a.timestamp).getTime();
-        const db = new Date(b.timestamp).getTime();
-        return db - da;
+    this.dataService
+      .getPostsById(
+        this.user?._id ?? '',
+        this.authService.getTokenFromStorage() ?? ''
+      )
+      .subscribe((posts) => {
+        this.userPosts = posts;
+        this.userPosts.sort((a, b) => {
+          const da = new Date(a.timestamp).getTime();
+          const db = new Date(b.timestamp).getTime();
+          return db - da;
+        });
       });
-    });
   }
 }

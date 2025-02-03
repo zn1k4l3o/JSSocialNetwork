@@ -103,4 +103,11 @@ export class AuthenticationService implements OnInit {
       return of(null);
     }
   }
+
+  getTokenFromStorage() {
+    if (typeof Storage !== 'undefined') {
+      this.access_token = sessionStorage.getItem('access_token');
+    }
+    return this.access_token;
+  }
 }

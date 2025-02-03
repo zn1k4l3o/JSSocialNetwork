@@ -46,8 +46,10 @@ export class NewPageComponent implements OnInit {
       userId: this.userId,
       timestamp: new Date().toISOString(),
     };
-    await this.dataService.addPost(post as Post).subscribe(() => {
-      this.router.navigate(['']);
-    });
+    await this.dataService
+      .addPost(post as Post, this.authService.getTokenFromStorage() ?? '')
+      .subscribe(() => {
+        this.router.navigate(['']);
+      });
   }
 }
