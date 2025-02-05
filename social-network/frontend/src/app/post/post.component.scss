@@ -40,6 +40,15 @@
       font-weight: 600;
     }
 
+    .editPost {
+      color: var(--font-white);
+      margin-right: 8px;
+    }
+
+    .editPost:hover {
+      cursor: pointer;
+    }
+
     p {
       padding: 0 8px;
       min-height: 100px;

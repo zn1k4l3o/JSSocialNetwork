@@ -114,6 +114,7 @@ export class PostComponent implements OnInit {
             )
             .subscribe((post) => {
               this.post = post;
+              this.calculatePostDate();
             });
         }
       }

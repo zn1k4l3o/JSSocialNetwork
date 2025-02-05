@@ -5,16 +5,21 @@
       <h4 class="date">{{ postDate }}</h4>
     </div>
     <div>
-      <a *ngIf="!isEdited" class="title" (click)="openPostPage()">{{ post?.title }}</a>
+      <a *ngIf="!isEdited" class="title" (click)="openPostPage()">{{
+        post?.title
+      }}</a>
       <input
         type="text"
         name="newTitle"
         *ngIf="isEdited"
         [formControl]="newPostTitle"
       />
-      <a (click)="editPost()" *ngIf="post?.userId === currentUserId">{{
-        isEdited ? "Send" : "Edit"
-      }}</a>
+      <a
+        (click)="editPost()"
+        *ngIf="post?.userId === currentUserId"
+        class="editPost"
+        >{{ isEdited ? "Send" : "Edit" }}</a
+      >
     </div>
     <p *ngIf="!isEdited">
       {{ post?.content }}
