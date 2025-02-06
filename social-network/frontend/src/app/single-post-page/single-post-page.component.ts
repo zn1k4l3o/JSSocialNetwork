@@ -5,10 +5,10 @@ import { Comment, Post, User } from '../../types';
 import { forkJoin, map, of, switchMap, timestamp } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { title } from 'process';
 
 @Component({
   selector: 'app-single-post-page',
+  standalone: false,
   templateUrl: './single-post-page.component.html',
   styleUrl: './single-post-page.component.scss',
 })

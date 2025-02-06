@@ -3,11 +3,11 @@ import { Comment, Post } from '../../types';
 import { DatabaseService } from '../database.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { timestamp } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-post',
+  standalone: false,
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })

@@ -5,6 +5,7 @@ import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-admin-page',
+  standalone: false,
   templateUrl: './admin-page.component.html',
   styleUrl: './admin-page.component.scss',
 })

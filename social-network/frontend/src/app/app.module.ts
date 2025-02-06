@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewPageComponent } from './new-page/new-page.component';
 import { SinglePostPageComponent } from './single-post-page/single-post-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,10 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [provideClientHydration()],
+  providers: [
+    provideClientHydration(),
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

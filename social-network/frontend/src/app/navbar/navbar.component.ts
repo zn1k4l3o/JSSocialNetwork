@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
+  standalone: false,
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit {
     this.authService.getUserFromStorage().subscribe((user) => {
       this.isLoggedIn = !!user;
       this.username = user?.username || null;
-      this.isAdmin = user?.hasAdmin ?? false; 
+      this.isAdmin = user?.hasAdmin ?? false;
     });
   }
 

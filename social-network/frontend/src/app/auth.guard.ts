@@ -6,7 +6,6 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import path from 'path';
 
 @Injectable({
   providedIn: 'root',

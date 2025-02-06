@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-page',
+  standalone: false,
   templateUrl: './new-page.component.html',
   styleUrl: './new-page.component.scss',
 })
