@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { DatabaseService } from '../database.service';
 import { Post } from '../../types';
-import { lastValueFrom, map } from 'rxjs';
+import { map } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -40,16 +40,18 @@ export class NewPageComponent implements OnInit {
   }
 
   async onSubmitPost() {
-    const post = {
-      title: this.newPost.value.title,
-      content: this.newPost.value.description,
-      userId: this.userId,
-      timestamp: new Date().toISOString(),
-    };
-    await this.dataService
-      .addPost(post as Post, this.authService.getTokenFromStorage() ?? '')
-      .subscribe(() => {
-        this.router.navigate(['']);
-      });
+    if (this.newPost.valid) {
+      const post = {
+        title: this.newPost.value.title,
+        content: this.newPost.value.description,
+        userId: this.userId,
+        timestamp: new Date().toISOString(),
+      };
+      await this.dataService
+        .addPost(post as Post, this.authService.getTokenFromStorage() ?? '')
+        .subscribe(() => {
+          this.router.navigate(['']);
+        });
+    }
   }
 }

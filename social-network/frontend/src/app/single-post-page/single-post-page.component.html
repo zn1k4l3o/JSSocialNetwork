@@ -1,11 +1,28 @@
 <main class="singlePostPage">
   <section>
-    <section>
-      <h1>{{ post.title }}</h1>
-      <h2>By {{ user?.username }} on {{ postDate }}</h2>
-      <p class="content">
-        {{ post.content }}
-      </p>
+    <section [formGroup]="newPost">
+      <div class="titleDiv">
+        <h1 *ngIf="editing === false">{{ post.title }}</h1>
+        <input
+          *ngIf="editing"
+          type="text"
+          name="title"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+      <h2>By {{ user.username }} on {{ postDate }}</h2>
+      <div class="contentDiv">
+        <p *ngIf="editing === false">
+          {{ post.content }}
+        </p>
+        <textarea
+          *ngIf="editing"
+          name="content"
+          id="content"
+          formControlName="content"
+        ></textarea>
+      </div>
       <div class="comments">
         <article *ngFor="let comment of comments">
           <h4>{{ comment.username }}</h4>
@@ -13,8 +30,8 @@
         </article>
       </div>
     </section>
-    <aside *ngIf="post.userId === user?._id">
-      <button>Edit</button>
+    <aside *ngIf="post.userId === currentUser?._id">
+      <button (click)="editPost()">{{ editing ? "Save" : "Edit" }}</button>
       <button (click)="deletePost()">Delete</button>
     </aside>
   </section>

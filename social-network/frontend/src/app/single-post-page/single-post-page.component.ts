@@ -2,8 +2,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
 import { Comment, Post, User } from '../../types';
-import { forkJoin, map, of, switchMap } from 'rxjs';
+import { forkJoin, map, of, switchMap, timestamp } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { title } from 'process';
 
 @Component({
   selector: 'app-single-post-page',
@@ -12,10 +14,21 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class SinglePostPageComponent implements OnInit {
   id: string | null = '';
-  post!: Post;
-  user: User | null = null;
+  post: Post = { title: '', content: '', userId: '', timestamp: '' };
+  user: User = {
+    username: '',
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    hasAdmin: false,
+    _id: '',
+  };
   comments: Comment[] = [];
   postDate: string = '';
+  newPost!: FormGroup;
+  currentUser!: User | null;
+  editing: boolean = false;
 
   private readonly route = inject(ActivatedRoute);
   constructor(
@@ -25,9 +38,14 @@ export class SinglePostPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.newPost = new FormGroup({
+      title: new FormControl(this.post.title, [Validators.required]),
+      content: new FormControl(this.post.content, [Validators.required]),
+    });
     this.id = this.route.snapshot.paramMap.get('id');
     this.fetchPost();
     this.fetchComments();
+    this.fetchCurrentUser();
   }
 
   fetchPost() {
@@ -36,14 +54,23 @@ export class SinglePostPageComponent implements OnInit {
       .subscribe((post) => {
         this.post = post;
         this.calculatePostDate();
-        this.data
-          .getUserById(
-            post.userId,
-            this.authService.getTokenFromStorage() ?? ''
-          )
-          .subscribe((user) => {
-            this.user = user;
-          });
+        this.getUserInfo();
+      });
+  }
+
+  fetchCurrentUser() {
+    this.authService.getUserFromStorage().subscribe((user) => {
+      this.currentUser = user;
+    });
+  }
+  getUserInfo() {
+    this.data
+      .getUserById(
+        this.post.userId,
+        this.authService.getTokenFromStorage() ?? ''
+      )
+      .subscribe((user) => {
+        this.user = user;
       });
   }
 
@@ -76,7 +103,31 @@ export class SinglePostPageComponent implements OnInit {
     this.postDate = this.post?.timestamp.split('T')[0].split('.')[0] ?? '';
   }
 
-  editPost() {}
+  editPost() {
+    this.editing = !this.editing;
+    if (this.editing) {
+      this.newPost.setValue({
+        title: this.post.title,
+        content: this.post.content,
+      });
+    } else {
+      const changes = {
+        title: this.newPost.value.title,
+        content: this.newPost.value.content,
+        timestamp: new Date().toISOString(),
+      };
+      this.data
+        .patchPost(
+          this.post?._id ?? '',
+          changes,
+          this.authService.getTokenFromStorage() ?? ''
+        )
+        .subscribe((post) => {
+          this.post = post;
+          this.calculatePostDate();
+        });
+    }
+  }
 
   deletePost() {
     this.data

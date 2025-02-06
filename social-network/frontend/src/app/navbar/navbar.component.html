@@ -1,7 +1,9 @@
 <nav>
   <ul>
     <li>
-      <a [routerLink]="['']"><img src="" alt="logo" /></a>
+      <a [routerLink]="['']"
+        ><img src="../../../public/duckie.png" alt="logo"
+      /></a>
     </li>
     <li>
       <a *ngIf="isLoggedIn && !isAdmin" [routerLink]="['']">Posts</a>
