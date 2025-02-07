@@ -5,6 +5,7 @@ import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-post-page',
+  standalone: false,
   templateUrl: './post-page.component.html',
   styleUrl: './post-page.component.scss',
 })

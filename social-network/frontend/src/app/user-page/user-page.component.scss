@@ -2,6 +2,8 @@
   width: 100%;
   background-color: var(--secondary);
   padding-top: 16px;
+  height: calc(100vh - 80px);
+  box-sizing: border-box;
 
   section {
     max-width: var(--page-width);
@@ -13,12 +15,21 @@
 
     div {
       width: 600px;
+      overflow: scroll;
+      padding: 16px;
+    }
+    div::-webkit-scrollbar {
+      display: none;
+    }
+
+    div {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     aside {
       display: flex;
       flex-direction: column;
-      //align-content: flex-start;
       margin-left: 64px;
     }
   }

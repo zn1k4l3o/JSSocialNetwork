@@ -6,7 +6,6 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import path from 'path';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +31,6 @@ export class AuthGuard implements CanActivate {
         return false;
       }
       if (!sessionStorage.length && !sessionStorage.getItem('access_token')) {
-        console.log('kurcina');
         this.router.navigate(['login']);
         return false;
       }

@@ -1,17 +1,14 @@
 .adminPage {
   background-color: var(--secondary);
   width: 100%;
-  height: fit-content;
+  height: calc(100vh - 80px);
+  overflow: scroll;
 
   section {
     width: var(--page-width);
     background-color: var(--post-color);
     margin: 0 auto;
-    padding: 0 20px;
-
-    h2 {
-      padding-top: 24px;
-    }
+    padding: 24px 20px;
 
     table {
       margin-top: 16px;

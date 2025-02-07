@@ -5,10 +5,10 @@ import { Comment, Post, User } from '../../types';
 import { forkJoin, map, of, switchMap, timestamp } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { title } from 'process';
 
 @Component({
   selector: 'app-single-post-page',
+  standalone: false,
   templateUrl: './single-post-page.component.html',
   styleUrl: './single-post-page.component.scss',
 })
@@ -25,7 +25,6 @@ export class SinglePostPageComponent implements OnInit {
     _id: '',
   };
   comments: Comment[] = [];
-  postDate: string = '';
   newPost!: FormGroup;
   currentUser!: User | null;
   editing: boolean = false;
@@ -53,7 +52,6 @@ export class SinglePostPageComponent implements OnInit {
       .getPostById(this.id ?? '', this.authService.getTokenFromStorage() ?? '')
       .subscribe((post) => {
         this.post = post;
-        this.calculatePostDate();
         this.getUserInfo();
       });
   }
@@ -99,10 +97,6 @@ export class SinglePostPageComponent implements OnInit {
       });
   }
 
-  calculatePostDate() {
-    this.postDate = this.post?.timestamp.split('T')[0].split('.')[0] ?? '';
-  }
-
   editPost() {
     this.editing = !this.editing;
     if (this.editing) {
@@ -124,7 +118,6 @@ export class SinglePostPageComponent implements OnInit {
         )
         .subscribe((post) => {
           this.post = post;
-          this.calculatePostDate();
         });
     }
   }

@@ -4,6 +4,7 @@ import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-register-page',
+  standalone: false,
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
 })

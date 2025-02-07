@@ -2,7 +2,7 @@
   <div class="content">
     <div>
       <h4>{{ username }}</h4>
-      <h4 class="date">{{ postDate }}</h4>
+      <h4 class="date">{{ post?.timestamp ?? "" | dateShow }}</h4>
     </div>
     <div>
       <a *ngIf="!isEdited" class="title" (click)="openPostPage()">{{

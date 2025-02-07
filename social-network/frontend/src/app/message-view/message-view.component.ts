@@ -6,6 +6,7 @@ import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-message-view',
+  standalone: false,
   templateUrl: './message-view.component.html',
   styleUrl: './message-view.component.scss',
 })
