@@ -3,9 +3,7 @@
   <section class="allMessages" *ngIf="peopleView">
     <div class="userMessages" *ngFor="let user of allUsers">
       <h4>{{ user.username }}</h4>
-      <a (click)="setChosenUser(user)">
-        <img src="" alt=">" />
-      </a>
+      <a (click)="setChosenUser(user)">></a>
     </div>
   </section>
   <section class="privateMessages" *ngIf="!peopleView">
