@@ -45,6 +45,8 @@ export class RegisterPageComponent implements OnInit {
           }
         );
       } else this.errorText = 'Passwords do not match!';
-    } else this.errorText = 'Make sure to write email properly.';
+    } else
+      this.errorText =
+        'Make sure to fill all the fields and write email properly.';
   }
 }
