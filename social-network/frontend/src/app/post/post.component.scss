@@ -1,5 +1,4 @@
 .singlePost {
-  //zamijeniti na grid kad stginem
   margin: 0 auto;
   width: 100%;
   max-width: 640px;
@@ -21,7 +20,7 @@
       justify-content: space-between;
       width: 100%;
       background-color: var(--primary);
-      min-height: 24px; //upitno
+      min-height: 24px;
 
       h4 {
         border-bottom: 1px solid var(--primary);
@@ -57,7 +56,6 @@
 
     input {
       background-color: var(--primary);
-      //border-bottom: 1px solid var(--primary);
       color: white;
       padding: 0 8px 4px 8px;
       min-height: 23px;
@@ -75,11 +73,9 @@
   }
 
   .reaction {
-    //padding: 0 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    //min-height: 40px;
     width: 100%;
     height: fit-content;
     border-top: 1px solid var(--primary);

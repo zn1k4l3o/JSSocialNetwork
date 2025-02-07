@@ -4,10 +4,11 @@
       <app-post *ngFor="let post of userPosts" [post]="post" />
     </div>
     <aside>
-      <h3>{{ user?.username }}</h3>
-      <h4>{{ user?.name }}</h4>
-      <h4>{{ user?.surname }}</h4>
-      <h4>{{ user?.email }}</h4>
+      <h2>User info</h2>
+      <h3>Username: {{ user?.username }}</h3>
+      <h4>Name: {{ user?.name }}</h4>
+      <h4>Surname: {{ user?.surname }}</h4>
+      <h4>Email: {{ user?.email }}</h4>
     </aside>
   </section>
 </main>

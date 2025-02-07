@@ -20,7 +20,6 @@ export class AuthService {
     const salt = user.salt;
     const hashedPass = await bcrypt.hash(password, salt);
     if (user.password !== hashedPass) throw new UnauthorizedException();
-    console.log('auth', user);
     const payload = { sub: user._id, user: user };
     return {
       access_token: await this.jwtService.signAsync(payload, {

@@ -15,7 +15,6 @@ export class PostComponent implements OnInit {
   @Input() post: Post | null = null;
   @Input() currentUserId: string = '';
   username = '';
-  postDate = '';
   enabledComments = false;
   comments: Comment[] = [];
   newComment!: FormControl;
@@ -37,11 +36,6 @@ export class PostComponent implements OnInit {
       Validators.required
     );
     this.fetchUsername();
-    this.calculatePostDate();
-  }
-
-  calculatePostDate() {
-    this.postDate = this.post?.timestamp.split('T')[0].split('.')[0] ?? '';
   }
 
   fetchUsername() {
@@ -114,7 +108,6 @@ export class PostComponent implements OnInit {
             )
             .subscribe((post) => {
               this.post = post;
-              this.calculatePostDate();
             });
         }
       }

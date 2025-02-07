@@ -25,7 +25,6 @@ export class SinglePostPageComponent implements OnInit {
     _id: '',
   };
   comments: Comment[] = [];
-  postDate: string = '';
   newPost!: FormGroup;
   currentUser!: User | null;
   editing: boolean = false;
@@ -53,7 +52,6 @@ export class SinglePostPageComponent implements OnInit {
       .getPostById(this.id ?? '', this.authService.getTokenFromStorage() ?? '')
       .subscribe((post) => {
         this.post = post;
-        this.calculatePostDate();
         this.getUserInfo();
       });
   }
@@ -99,10 +97,6 @@ export class SinglePostPageComponent implements OnInit {
       });
   }
 
-  calculatePostDate() {
-    this.postDate = this.post?.timestamp.split('T')[0].split('.')[0] ?? '';
-  }
-
   editPost() {
     this.editing = !this.editing;
     if (this.editing) {
@@ -124,7 +118,6 @@ export class SinglePostPageComponent implements OnInit {
         )
         .subscribe((post) => {
           this.post = post;
-          this.calculatePostDate();
         });
     }
   }

@@ -37,7 +37,6 @@ export class NewPageComponent implements OnInit {
       .subscribe((userId) => {
         this.userId = userId;
       });
-    console.log(this.userId);
   }
 
   async onSubmitPost() {

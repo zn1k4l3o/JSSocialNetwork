@@ -11,7 +11,7 @@
           formControlName="title"
         />
       </div>
-      <h2>By {{ user.username }} on {{ postDate }}</h2>
+      <h2>By {{ user.username }} on {{ post.timestamp | dateShow }}</h2>
       <div class="contentDiv">
         <p *ngIf="editing === false">
           {{ post.content }}

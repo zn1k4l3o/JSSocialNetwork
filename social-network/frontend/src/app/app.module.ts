@@ -19,6 +19,7 @@ import { NewPageComponent } from './new-page/new-page.component';
 import { SinglePostPageComponent } from './single-post-page/single-post-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DateShowPipe } from './date-show.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     NewPageComponent,
     SinglePostPageComponent,
     AdminPageComponent,
+    DateShowPipe,
   ],
   imports: [
     HttpClientModule,

@@ -28,7 +28,7 @@
       <tr *ngFor="let post of postList; index as i">
         <td>{{ post.title }}</td>
         <td>{{ post.content }}</td>
-        <td>{{ post.timestamp }}</td>
+        <td>{{ post.timestamp | dateShow }}</td>
         <td><button (click)="deletePost(i)">Delete</button></td>
       </tr>
     </table>

@@ -28,7 +28,6 @@ export class AuthenticationService implements OnInit {
       next: (userToken: JWTToken) => {
         this.access_token = userToken.access_token;
         sessionStorage.setItem('access_token', userToken.access_token);
-        console.log('Login successful:', userToken);
         this.fetchUser();
         this.errorMessage = null;
         this.router.navigate(['/']).then(() => {
@@ -84,11 +83,9 @@ export class AuthenticationService implements OnInit {
   getUserFromStorage() {
     if (typeof Storage !== 'undefined') {
       this.access_token = sessionStorage.getItem('access_token');
-      console.log('access', this.access_token);
       if (this.access_token) {
         return this.data.getUserByToken(this.access_token).pipe(
           map((response: JWTTokenResponse) => {
-            console.log(response.user);
             return response.user;
           }),
           catchError((error) => {

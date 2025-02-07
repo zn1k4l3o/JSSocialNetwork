@@ -22,13 +22,11 @@ export class UsersService {
   }
 
   findUserById(userId: string) {
-    //po potrebi prosirit na user
     return this.userModel.findById(userId);
   }
 
   patchUser(id, user) {
-    //provjerit kaj ocemo s ovim
-    console.log(id, user);
+    return id + user;
   }
 
   addUser(user) {
